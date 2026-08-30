@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edukasi Pubertas Remaja Laki-Laki</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .screen {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        button {
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #1f618d;
+        }
+        .info-box, .dict-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        h3 { margin-top: 0; color: #2c3e50; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Simulasi Film Edukasi: Pubertas Laki-Laki</h1>
+        
+        <!-- Bagian Simulasi Adegan / "Film" -->
+        <div class="screen" id="scene-display">
+            <h2>Memuat Simulasi...</h2>
+            <p id="scene-desc">Tekan tombol navigasi di bawah untuk mulai menonton.</p>
+        </div>
+
+        <div class="btn-group">
+            <button onclick="prevScene()">Sebelumnya</button>
+            <button onclick="nextScene()">Selanjutnya</button>
+        </div>
+
+        <!-- Informasi Statis -->
+        <div class="info-box">
+            <h3>📌 Informasi Statis & Fakta Utama</h3>
+            <ul id="static-info">
+                <!-- Data akan diisi oleh JavaScript -->
+            </ul>
+        </div>
+
+        <!-- Kamus / Arti Istilah -->
+        <div class="dict-box">
+            <h3>📖 Arti Istilah Medis & Biologis</h3>
+            <p id="dict-content">Pilih adegan untuk melihat penjelasan istilah terkait.</p>
+        </div>
+    </div>
+
+    <script>
+        // Data "Film" (Adegan, Informasi Statis, dan Arti Istilah)
+        const filmData = [
+            {
+                title: "Bagian 1: Apa itu Pubertas?",
+                desc: "Pubertas adalah masa transisi biologis di mana tubuh anak-anak berubah menjadi tubuh dewasa yang mampu melakukan reproduksi.",
+                info: "Biasanya pubertas pada laki-laki dimulai pada rentang usia 10 hingga 14 tahun.",
+                definition: "Pubertas: Berasal dari bahasa Latin 'pubertas' yang berarti usia kedewasaan jasmani (ditumbuhi rambut kelamin)."
+            },
+            {
+                title: "Bagian 2: Perubahan Hormon",
+                desc: "Otak (Kelenjar Hipotalamus dan Pituitari) mengirim sinyal ke testis untuk memproduksi hormon testosteron.",
+                info: "Testosteron adalah hormon utama pria yang memicu seluruh perubahan fisik dan mental selama masa pubertas.",
+                definition: "Testosteron: Hormon steroid utama pada pria yang diproduksi di testis, bertanggung jawab atas karakteristik seks sekunder."
+            },
+            {
+                title: "Bagian 3: Perubahan Fisik Utama",
+                desc: "Terjadi pertumbuhan tinggi badan yang cepat (growth spurt), suara menjadi lebih berat, dan bahu serta dada melebar.",
+                info: "Masa pertumbuhan cepat pada remaja laki-laki bisa menambah tinggi badan secara signifikan dalam beberapa bulan.",
+                definition: "Growth Spurt: Lonjakan pertumbuhan tinggi dan berat badan secara cepat yang terjadi pada masa remaja."
+            },
+            {
+                title: "Bagian 4: Perubahan Sekunder & Kebersihan",
+                desc: "Tumbuhnya rambut di sekitar kemalangan, ketiak, dan wajah (kumis/jenggot). Kelenjar minyak aktif sehingga muncul jerawat dan keringat lebih banyak.",
+                info: "Menjaga kebersihan tubuh dengan mandi teratur dan menggunakan deodoran sangat penting pada fase ini.",
+                definition: "Kelenjar Sebasea: Kelenjar kulit yang menghasilkan minyak (sebum). Peningkatan aktivitasnya selama pubertas memicu jerawat."
+            }
+        ];
+
+        let currentSceneIndex = 0;
+
+        const sceneDisplay = document.getElementById("scene-display");
+        const staticInfoList = document.getElementById("static-info");
+        const dictContent = document.getElementById("dict-content");
+
+        // Fungsi untuk memperbarui tampilan web
+        function updateView() {
+            const current = filmData[currentSceneIndex];
+            
+            // Update Layar "Film"
+            sceneDisplay.innerHTML = `<h2>${current.title}</h2><p>${current.desc}</p>`;
+            
+            // Update Informasi Statis
+            staticInfoList.innerHTML = `<li>${current.info}</li><li>Fase ini dipengaruhi sepenuhnya oleh sistem endokrin (hormon).</li>`;
+            
+            // Update Arti Istilah (Kamus)
+            dictContent.innerHTML = `<strong>${current.definition}</strong>`;
+        }
+
+        // Tombol Selanjutnya
+        function nextScene() {
+            if (currentSceneIndex < filmData.length - 1) {
+                currentSceneIndex++;
+                updateView();
+            } else {
+                alert("Simulasi film selesai! Semoga bermanfaat.");
+            }
+        }
+
+        // Tombol Sebelumnya
+        function prevScene() {
+            if (currentSceneIndex > 0) {
+                currentSceneIndex--;
+                updateView();
+            } else {
+                alert("Ini adalah bagian awal dari film.");
+            }
+        }
+
+        // Jalankan saat pertama kali dibuka
+        window.onload = updateView;
+    </script>
+
+</body>
+</html>
