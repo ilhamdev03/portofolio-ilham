@@ -10,12 +10,43 @@
 <style>
   html { scroll-behavior: smooth; }
   section, header { scroll-margin-top: 90px; }
+
+  body {
+    background-color: #0a0a14;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.25), transparent 45%),
+      radial-gradient(circle at 80% 60%, rgba(59, 130, 246, 0.15), transparent 50%);
+  }
+
+  /* Foto profil bulat + efek glow */
+  .photo-frame {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+  .photo-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.45) 0%, rgba(59, 130, 246, 0.2) 55%, transparent 75%);
+    filter: blur(35px);
+    border-radius: 9999px;
+    z-index: 0;
+  }
+  .photo-frame img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 9999px;
+    border: 2px solid rgba(167, 139, 250, 0.35);
+  }
 </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
 <!-- Navbar -->
-<nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur border-b border-slate-800 max-w-4xl mx-auto px-6 py-6 flex justify-between items-center">
+<nav class="sticky top-0 z-50 bg-slate-900/70 backdrop-blur border-b border-slate-800/70 max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
   <span class="font-bold text-lg text-indigo-400">Ilham.dev</span>
   <div class="space-x-6 text-sm text-slate-300">
     <a href="#about" class="hover:text-indigo-400 transition">About</a>
@@ -24,25 +55,39 @@
   </div>
 </nav>
 
-<!-- Hero Section -->
-<header class="max-w-4xl mx-auto px-6 py-20 flex flex-col items-start">
-  <span class="text-indigo-400 font-medium mb-2">Hii, saya</span>
-  <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Ilham.</h1>
-  <p class="text-lg md:text-xl text-slate-400 max-w-xl mb-8">
-    Saya seorang siswa SMK jurusan Rekayasa Perangkat Lunak (RPL) yang belajar membangun antarmuka web yang bersih, interaktif, dan mudah digunakan.
-  </p>
-  <div class="flex space-x-4">
-    <a href="#projects" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg shadow-indigo-600/30">Lihat Project</a>
-    <a href="#contact" class="border border-slate-700 hover:border-slate-500 px-6 py-3 rounded-lg font-medium transition">Hubungi Saya</a>
+<!-- About / Hero Section -->
+<section id="about" class="max-w-5xl mx-auto px-6 pt-16 pb-20">
+  <div class="text-center mb-14">
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">About Me</h2>
+    <p class="text-slate-400 mt-3">Belajar mengubah kode menjadi pengalaman web yang nyata</p>
   </div>
-</header>
 
-<!-- About Section -->
-<section id="about" class="max-w-4xl mx-auto px-6 py-12">
-  <h2 class="text-2xl font-bold mb-8 border-b border-slate-800 pb-3">About Me..</h2>
-  <div class="space-y-4 text-slate-400 leading-relaxed">
+  <div class="flex flex-col-reverse md:flex-row items-center gap-12">
+    <!-- Teks -->
+    <div class="flex-1">
+      <p class="text-indigo-400 font-medium mb-1">Hello, I'm</p>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">Ilham</h1>
+      <p class="text-slate-400 leading-relaxed max-w-xl mb-8">
+        Saya seorang siswa SMK jurusan Rekayasa Perangkat Lunak (RPL) yang belajar membangun antarmuka web yang bersih, interaktif, dan mudah digunakan.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#projects" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg shadow-indigo-600/30">Lihat Project</a>
+        <a href="#contact" class="border border-slate-700 hover:border-slate-500 px-6 py-3 rounded-lg font-medium transition">Hubungi Saya</a>
+      </div>
+    </div>
+
+    <!-- Foto -->
+    <div class="photo-frame shrink-0">
+      <div class="photo-glow"></div>
+      <!-- GANTI src di bawah ini dengan foto kamu, contoh: images/foto-ilham.jpg -->
+      <img src="images/foto-ilham.jpg" alt="Foto Ilham" onerror="this.src='https://placehold.co/300x300/1e1b3a/a78bfa?text=Foto+Kamu'">
+    </div>
+  </div>
+
+  <!-- Deskripsi lengkap -->
+  <div class="space-y-4 text-slate-400 leading-relaxed mt-14 border-t border-slate-800 pt-10">
     <p>
-      Halo,saya Ilham. Saya adalah seorang siswa SMK yang mengambil jurusan
+      Halo, saya Ilham. Saya adalah seorang siswa SMK yang mengambil jurusan
       Rekayasa Perangkat Lunak (RPL). Di sini saya belajar dasar-dasar pemrograman,
       mulai dari menulis HTML sederhana di VS Code sampai memahami bagaimana CSS
       dan JavaScript bisa membuat sebuah halaman jadi lebih hidup — seperti website ini.
@@ -67,78 +112,90 @@
   <div class="mt-10">
     <h3 class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-4">Skill &amp; Tools</h3>
     <div class="flex flex-wrap gap-2">
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">HTML</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">CSS (dasar)</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">JavaScript (dasar)</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">VS Code</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">Notepad++</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">Database (SQL/MariaDB)</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">Unity (dasar)</span>
-      <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-md">Logika pemrograman</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">HTML</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">CSS (dasar)</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">JavaScript (dasar)</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">VS Code</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">Notepad++</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">Database (SQL/MariaDB)</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">Unity (dasar)</span>
+      <span class="text-xs bg-indigo-950/60 border border-indigo-800/40 text-indigo-300 px-3 py-1.5 rounded-md">Logika pemrograman</span>
+    </div>
+  </div>
+
+  <!-- Ringkasan -->
+  <div class="grid sm:grid-cols-2 gap-6 mt-12">
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 backdrop-blur">
+      <p class="text-3xl font-bold text-indigo-300">4</p>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mt-1">Total Project</p>
+    </div>
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 backdrop-blur">
+      <p class="text-3xl font-bold text-indigo-300">8</p>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mt-1">Skill &amp; Tools</p>
     </div>
   </div>
 </section>
 
 <!-- Projects Section -->
-<section id="projects" class="max-w-4xl mx-auto px-6 py-12">
+<section id="projects" class="max-w-5xl mx-auto px-6 py-12">
   <h2 class="text-2xl font-bold mb-8 border-b border-slate-800 pb-3">Project yang telah saya buat!</h2>
   <div class="grid md:grid-cols-2 gap-6">
 
     <!-- Project 1 -->
-    <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition">
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition backdrop-blur">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-lg font-semibold">To-Do List App</h3>
         <span class="text-[11px] uppercase tracking-wide text-slate-400 border border-slate-700 px-2 py-0.5 rounded-full">In Progress</span>
       </div>
       <p class="text-slate-400 text-sm mb-4">Aplikasi catatan tugas sederhana — tambah, tandai selesai, dan hapus tugas. Data tersimpan otomatis di browser memakai localStorage.</p>
       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">CSS</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">CSS</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
       </div>
       <span class="text-slate-500 text-sm">Demo &amp; Source (segera)</span>
     </div>
 
     <!-- Project 2 -->
-    <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition">
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition backdrop-blur">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-lg font-semibold">Mini CRUD — Data Siswa</h3>
         <span class="text-[11px] uppercase tracking-wide text-slate-400 border border-slate-700 px-2 py-0.5 rounded-full">In Progress</span>
       </div>
       <p class="text-slate-400 text-sm mb-4">Sistem pendataan siswa sederhana dengan fitur tambah, lihat, edit, dan hapus data, terhubung ke database MariaDB.</p>
       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">PHP</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">MariaDB</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">SQL</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">PHP</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">MariaDB</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">SQL</span>
       </div>
       <span class="text-slate-500 text-sm">Demo &amp; Source (segera)</span>
     </div>
 
     <!-- Project 3 -->
-    <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition">
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition backdrop-blur">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-lg font-semibold">Kalkulator BMI</h3>
         <span class="text-[11px] uppercase tracking-wide text-slate-400 border border-slate-700 px-2 py-0.5 rounded-full">In Progress</span>
       </div>
       <p class="text-slate-400 text-sm mb-4">Kalkulator sederhana untuk menghitung Body Mass Index dari berat dan tinggi badan, lengkap dengan kategori hasilnya.</p>
       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">CSS</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">CSS</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
       </div>
       <span class="text-slate-500 text-sm">Demo &amp; Source (segera)</span>
     </div>
 
     <!-- Project 4 -->
-    <div class="bg-slate-800/50 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition">
+    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-indigo-500/50 transition backdrop-blur">
       <div class="flex items-center justify-between mb-2">
         <h3 class="text-lg font-semibold">Edukasi Pubertas Remaja Laki-Laki</h3>
         <span class="text-[11px] uppercase tracking-wide text-emerald-400 border border-emerald-400 px-2 py-0.5 rounded-full">Done</span>
       </div>
       <p class="text-slate-400 text-sm mb-4">Simulasi "film" edukasi interaktif seputar fase-fase pubertas pada remaja laki-laki — lengkap dengan informasi statis dan kamus istilah medis di tiap bagiannya.</p>
       <div class="flex gap-2 mb-4">
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
-        <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">HTML</span>
+        <span class="text-xs bg-indigo-950/60 text-indigo-300 px-2.5 py-1 rounded-md">JavaScript</span>
       </div>
       <a href="pubertas.html" class="text-indigo-400 text-sm font-medium hover:underline">Lihat Project! &rarr;</a>
     </div>
@@ -147,7 +204,7 @@
 </section>
 
 <!-- Footer / Contact -->
-<footer id="contact" class="max-w-4xl mx-auto px-6 py-20 border-t border-slate-800 text-center">
+<footer id="contact" class="max-w-5xl mx-auto px-6 py-20 border-t border-slate-800 text-center">
   <h2 class="text-2xl font-bold mb-4">Kontak Saya!</h2>
   <p class="text-slate-400 mb-6 max-w-md mx-auto">Jika punya pertanyaan dan saran, jangan ragu untuk menghubungi saya.</p>
   <a href="mailto:tabailham08@gmail.com" class="inline-block bg-slate-800 hover:bg-slate-700 border border-slate-700 px-6 py-3 rounded-lg font-medium transition mb-8">Kirim Email</a>
